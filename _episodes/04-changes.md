@@ -19,28 +19,28 @@ keypoints:
 ---
 
 First let's make sure we're still in the right directory.
-You should be in the `planets` directory.
+You should be in the `variants` directory.
 
 ~~~
-$ cd ~/Desktop/planets
+$ cd ~/Desktop/variants
 ~~~
 {: .language-bash}
 
-Let's create a file called `mars.txt` that contains some notes
-about the Red Planet's suitability as a base.
+Let's create a file called `b117.txt` that contains some notes
+about the mutations found in the B.1.1.7 variant.
 We'll use `nano` to edit the file;
 you can use whatever editor you like.
 In particular, this does not have to be the `core.editor` you set globally earlier. But remember, the bash command to create or edit a new file will depend on the editor you choose (it might not be `nano`). For a refresher on text editors, check out ["Which Editor?"](https://swcarpentry.github.io/shell-novice/03-create/) in [The Unix Shell](https://swcarpentry.github.io/shell-novice/) lesson.
 
 ~~~
-$ nano mars.txt
+$ nano b117.txt
 ~~~
 {: .language-bash}
 
-Type the text below into the `mars.txt` file:
+Type the text below into the `b117.txt` file:
 
 ~~~
-Cold and dry, but everything is my favorite color
+Almost all sequences carry the N501Y mutation.
 ~~~
 
 Let's first verify that the file was properly created by running the list command (`ls`):
@@ -52,20 +52,20 @@ $ ls
 {: .language-bash}
 
 ~~~
-mars.txt
+b117.txt
 ~~~
 {: .output}
 
 
-`mars.txt` contains a single line, which we can see by running:
+`b117.txt` contains a single line, which we can see by running:
 
 ~~~
-$ cat mars.txt
+$ cat b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-Cold and dry, but everything is my favorite color
+Almost all sequences carry the N501Y mutation.
 ~~~
 {: .output}
 
@@ -85,7 +85,7 @@ No commits yet
 Untracked files:
    (use "git add <file>..." to include in what will be committed)
 
-	mars.txt
+	b117.txt
 
 nothing added to commit but untracked files present (use "git add" to track)
 ~~~
@@ -96,7 +96,7 @@ that Git isn't keeping track of.
 We can tell Git to track a file using `git add`:
 
 ~~~
-$ git add mars.txt
+$ git add b117.txt
 ~~~
 {: .language-bash}
 
@@ -115,25 +115,25 @@ No commits yet
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
-	new file:   mars.txt
+	new file:   b117.txt
 
 ~~~
 {: .output}
 
-Git now knows that it's supposed to keep track of `mars.txt`,
+Git now knows that it's supposed to keep track of `b117.txt`,
 but it hasn't recorded these changes as a commit yet.
 To get it to do that,
 we need to run one more command:
 
 ~~~
-$ git commit -m "Start notes on Mars as a base"
+$ git commit -m "Start notes on B.1.1.7 variant"
 ~~~
 {: .language-bash}
 
 ~~~
-[master (root-commit) f22b25e] Start notes on Mars as a base
+[master (root-commit) 39f2875] Start notes on B.1.1.7 variant
  1 file changed, 1 insertion(+)
- create mode 100644 mars.txt
+ create mode 100644 b117.txt
 ~~~
 {: .output}
 
@@ -176,11 +176,9 @@ $ git log
 {: .language-bash}
 
 ~~~
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+commit 39f2875284ca9c1f4594c63bebaf581480ae3ef6 (HEAD -> master)
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
-
-    Start notes on Mars as a base
+Date:   Sun May 16 07:56:46 2021 +0200
 ~~~
 {: .output}
 
@@ -195,7 +193,7 @@ and the log message Git was given when the commit was created.
 
 > ## Where Are My Changes?
 >
-> If we run `ls` at this point, we will still see just one file called `mars.txt`.
+> If we run `ls` at this point, we will still see just one file called `b117.txt`.
 > That's because Git saves information about files' history
 > in the special `.git` directory mentioned earlier
 > so that our filesystem doesn't become cluttered
@@ -207,8 +205,8 @@ Now suppose Dracula adds more information to the file.
 you may use a different editor, and don't need to `cat`.)
 
 ~~~
-$ nano mars.txt
-$ cat mars.txt
+$ nano b117.txt
+$ cat b117.txt
 ~~~
 {: .language-bash}
 
@@ -232,7 +230,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   mars.txt
+	modified:   b117.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -255,13 +253,13 @@ $ git diff
 {: .language-bash}
 
 ~~~
-diff --git a/mars.txt b/mars.txt
-index df0654a..315bf3a 100644
---- a/mars.txt
-+++ b/mars.txt
+diff --git a/b117.txt b/b117.txt
+index 0a8095d..39e9187 100644
+--- a/b117.txt
++++ b/b117.txt
 @@ -1 +1,2 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
+ Almost all sequences carry the N501Y mutation.
++But P681H is also very common.
 ~~~
 {: .output}
 
@@ -284,8 +282,7 @@ If we break it down into pieces:
 After reviewing our change, it's time to commit it:
 
 ~~~
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
-$ git status
+$ git commit -m "Add note about P681H mutation"
 ~~~
 {: .language-bash}
 
@@ -295,7 +292,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   mars.txt
+	modified:   b117.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -306,13 +303,13 @@ Git won't commit because we didn't use `git add` first.
 Let's fix that:
 
 ~~~
-$ git add mars.txt
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
+$ git add b117.txt
+$ git commit -m "Add note about P681H mutation"
 ~~~
 {: .language-bash}
 
 ~~~
-[master 34961b1] Add concerns about effects of Mars' moons on Wolfman
+[master 49ea9c1] Add note about P681H mutation
  1 file changed, 1 insertion(+)
 ~~~
 {: .output}
@@ -363,15 +360,15 @@ First,
 we'll add another line to the file:
 
 ~~~
-$ nano mars.txt
-$ cat mars.txt
+$ nano b117.txt
+$ cat b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+Almost all sequences carry the N501Y mutation.
+But P681H is also very common.
+And of course it contains D614G.
 ~~~
 {: .output}
 
@@ -381,14 +378,14 @@ $ git diff
 {: .language-bash}
 
 ~~~
-diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+diff --git a/b117.txt b/b117.txt
+index 39e9187..1f7f5ff 100644
+--- a/b117.txt
++++ b/b117.txt
 @@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+ Almost all sequences carry the N501Y mutation.
+ But P681H is also very common.
++And of course it contains D614G.
 ~~~
 {: .output}
 
@@ -399,7 +396,7 @@ Now let's put that change in the staging area
 and see what `git diff` reports:
 
 ~~~
-$ git add mars.txt
+$ git add b117.txt
 $ git diff
 ~~~
 {: .language-bash}
@@ -417,14 +414,14 @@ $ git diff --staged
 {: .language-bash}
 
 ~~~
-diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
+diff --git a/b117.txt b/b117.txt
+index 39e9187..1f7f5ff 100644
+--- a/b117.txt
++++ b/b117.txt
 @@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+ Almost all sequences carry the N501Y mutation.
+ But P681H is also very common.
++And of course it contains D614G.
 ~~~
 {: .output}
 
@@ -434,12 +431,12 @@ and what's in the staging area.
 Let's save our changes:
 
 ~~~
-$ git commit -m "Discuss concerns about Mars' climate for Mummy"
+$ git commit -m "Discuss the presence of D614G in B.1.1.7"
 ~~~
 {: .language-bash}
 
 ~~~
-[master 005937f] Discuss concerns about Mars' climate for Mummy
+[master 8dbae73] Discuss the presence of D614G in B.1.1.7
  1 file changed, 1 insertion(+)
 ~~~
 {: .output}
@@ -465,23 +462,23 @@ $ git log
 {: .language-bash}
 
 ~~~
-commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
+commit 8dbae73a1a865b1ced6d487193dd46a3f40a3286 (HEAD -> master)
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:14:07 2013 -0400
+Date:   Sun May 16 09:52:53 2021 +0200
 
-    Discuss concerns about Mars' climate for Mummy
+    Discuss the presence of D614G in B.1.1.7
 
-commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
+commit 49ea9c1fde882cf6ef2ba4c4503ba2e236441aca
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:07:21 2013 -0400
+Date:   Sun May 16 08:03:12 2021 +0200
 
-    Add concerns about effects of Mars' moons on Wolfman
+    Add note about P681H mutation
 
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+commit 39f2875284ca9c1f4594c63bebaf581480ae3ef6
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+Date:   Sun May 16 07:56:46 2021 +0200
 
-    Start notes on Mars as a base
+    Start notes on B.1.1.7 variant
 ~~~
 {: .output}
 
@@ -521,11 +518,11 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 > {: .language-bash}
 >
 > ~~~
-> commit 005937fbe2a98fb83f0ade869025dc2636b4dad5
+> commit 8dbae73a1a865b1ced6d487193dd46a3f40a3286 (HEAD -> master)
 > Author: Vlad Dracula <vlad@tran.sylvan.ia>
-> Date:   Thu Aug 22 10:14:07 2013 -0400
+> Date:   Sun May 16 09:52:53 2021 +0200
 >
->    Discuss concerns about Mars' climate for Mummy
+>     Discuss the presence of D614G in B.1.1.7
 > ~~~
 > {: .output}
 >
@@ -537,9 +534,9 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 > ~~~
 > {: .language-bash}
 > ~~~
-> 005937f Discuss concerns about Mars' climate for Mummy
-> 34961b1 Add concerns about effects of Mars' moons on Wolfman
-> f22b25e Start notes on Mars as a base
+> 8dbae73 (HEAD -> master) Discuss the presence of D614G in B.1.1.7
+> 49ea9c1 Add note about P681H mutation
+> 39f2875 Start notes on B.1.1.7 variant
 > ~~~
 > {: .output}
 >
@@ -554,9 +551,9 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 > ~~~
 > {: .language-bash}
 > ~~~
-> * 005937f (HEAD -> master) Discuss concerns about Mars' climate for Mummy
-> * 34961b1 Add concerns about effects of Mars' moons on Wolfman
-> * f22b25e Start notes on Mars as a base
+> * 8dbae73 (HEAD -> master) Discuss the presence of D614G in B.1.1.7
+> * 49ea9c1 Add note about P681H mutation
+> * 39f2875 Start notes on B.1.1.7 variant
 > ~~~
 > {: .output}
 {: .callout}
@@ -569,14 +566,14 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 >    Try it for yourself:
 >
 >    ~~~
->    $ mkdir spaceships
+>    $ mkdir vocs
 >    $ git status
->    $ git add spaceships
+>    $ git add vocs
 >    $ git status
 >    ~~~
 >    {: .language-bash}
 >
->    Note, our newly created empty directory `spaceships` does not appear in
+>    Note, our newly created empty directory `vocs` does not appear in
 >    the list of untracked files even if we explicitly add it (_via_ `git add`) to our
 >    repository. This is the reason why you will sometimes see `.gitkeep` files
 >    in otherwise empty directories. Unlike `.gitignore`, these files are not special
@@ -594,9 +591,9 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 >    Try it for yourself:
 >
 >    ~~~
->    $ touch spaceships/apollo-11 spaceships/sputnik-1
+>    $ touch vocs/b117 spaceships/p1
 >    $ git status
->    $ git add spaceships
+>    $ git add vocs
 >    $ git status
 >    ~~~
 >    {: .language-bash}
@@ -604,7 +601,7 @@ Date:   Thu Aug 22 09:51:46 2013 -0400
 >    Before moving on, we will commit these changes.
 >
 >    ~~~
->    $ git commit -m "Add some initial thoughts on spaceships"
+>    $ git commit -m "Track variants of concern (VoCs)"
 >    ~~~
 >    {: .language-bash}
 >
@@ -620,11 +617,11 @@ repository (`git commit`):
 > ## Choosing a Commit Message
 >
 > Which of the following commit messages would be most appropriate for the
-> last commit made to `mars.txt`?
+> last commit made to `b117.txt`?
 >
 > 1. "Changes"
-> 2. "Added line 'But the Mummy will appreciate the lack of humidity' to mars.txt"
-> 3. "Discuss effects of Mars' climate on the Mummy"
+> 2. "Added line 'Almost all sequences carry the N501Y mutation.' to b117.txt"
+> 3. "Discuss the presence of D614G in B.1.1.7"
 >
 > > ## Solution
 > > Answer 1 is not descriptive enough, and the purpose of the commit is unclear;
@@ -671,56 +668,56 @@ repository (`git commit`):
 > The staging area can hold changes from any number of files
 > that you want to commit as a single snapshot.
 >
-> 1. Add some text to `mars.txt` noting your decision
-> to consider Venus as a base
-> 2. Create a new file `venus.txt` with your initial thoughts
-> about Venus as a base for you and your friends
+> 1. Add some text to `b117.txt` noting that P.1 also contains the N501Y mutation
+> 2. Create a new file `p1.txt` with an initial list of mutations
 > 3. Add changes from both files to the staging area,
 > and commit those changes.
 >
 > > ## Solution
 > >
-> > First we make our changes to the `mars.txt` and `venus.txt` files:
+> > First we make our changes to the `b117.txt` and `p1.txt` files:
 > > ~~~
-> > $ nano mars.txt
-> > $ cat mars.txt
+> > $ nano b117.txt
+> > $ cat b117.txt
 > > ~~~
 > > {: .language-bash}
 > > ~~~
-> > Maybe I should start with a base on Venus.
+> > Almost all sequences carry the N501Y mutation.
+> > But P681H is also very common.
+> > And of course it contains D614G.
+> > Note that P.1 also contains N501Y.
 > > ~~~
 > > {: .output}
 > > ~~~
-> > $ nano venus.txt
-> > $ cat venus.txt
+> > $ nano p1.txt
+> > $ cat p1.txt
 > > ~~~
 > > {: .language-bash}
 > > ~~~
-> > Venus is a nice planet and I definitely should consider it as a base.
+> > P.1 contains the N501Y mutation.
 > > ~~~
 > > {: .output}
 > > Now you can add both files to the staging area. We can do that in one line:
 > >
 > > ~~~
-> > $ git add mars.txt venus.txt
+> > $ git add b117.txt p1.txt
 > > ~~~
 > > {: .language-bash}
 > > Or with multiple commands:
 > > ~~~
-> > $ git add mars.txt
-> > $ git add venus.txt
+> > $ git add b117.txt
+> > $ git add p1.txt
 > > ~~~
 > > {: .language-bash}
 > > Now the files are ready to commit. You can check that using `git status`. If you are ready to commit use:
 > > ~~~
-> > $ git commit -m "Write plans to start a base on Venus"
+> > $ git commit -m "Also start tracking P.1"
 > > ~~~
 > > {: .language-bash}
 > > ~~~
-> > [master cc127c2]
-> >  Write plans to start a base on Venus
+> > [master ffc49bd] Also start tracking P.1
 > >  2 files changed, 2 insertions(+)
-> >  create mode 100644 venus.txt
+> >  create mode 100644 p1.txt
 > > ~~~
 > > {: .output}
 > {: .solution}
@@ -737,7 +734,7 @@ repository (`git commit`):
 >
 > > ## Solution
 > >
-> > If needed, move out of the `planets` folder:
+> > If needed, move out of the `variants` folder:
 > >
 > > ~~~
 > > $ cd ..
@@ -764,7 +761,7 @@ repository (`git commit`):
 > >
 > > ~~~
 > > $ git add me.txt
-> > $ git commit -m "Add biography file" 
+> > $ git commit -m "Add biography file"
 > > ~~~
 > > {: .language-bash}
 > >
