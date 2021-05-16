@@ -20,41 +20,42 @@ As we saw in the previous lesson, we can refer to commits by their
 identifiers.  You can refer to the _most recent commit_ of the working
 directory by using the identifier `HEAD`.
 
-We've been adding one line at a time to `mars.txt`, so it's easy to track our
+We've been adding one line at a time to `b117.txt`, so it's easy to track our
 progress by looking, so let's do that using our `HEAD`s.  Before we start,
-let's make a change to `mars.txt`, adding yet another line.
+let's make a change to `b117.txt`, adding yet another line.
 
 ~~~
-$ nano mars.txt
-$ cat mars.txt
+$ nano b117.txt
+$ cat b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-An ill-considered change
+Almost all sequences carry the N501Y mutation.
+But P681H is also very common.
+And of course it contains D614G.
+Note that P.1 also contains N501Y.
+Contains A570D, which is absent from P.1.
 ~~~
 {: .output}
 
 Now, let's see what we get.
 
 ~~~
-$ git diff HEAD mars.txt
+$ git diff HEAD b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-diff --git a/mars.txt b/mars.txt
-index b36abfd..0848c8d 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,3 +1,4 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
- But the Mummy will appreciate the lack of humidity
-+An ill-considered change.
+diff --git a/b117.txt b/b117.txt
+index fc953d9..a8bd3f5 100644
+--- a/b117.txt
++++ b/b117.txt
+@@ -2,3 +2,4 @@ Almost all sequences carry the N501Y mutation.
+ But P681H is also very common.
+ And of course it contains D614G.
+ Note that P.1 also contains N501Y.
++Contains A570D, which is absent from P.1.
 ~~~
 {: .output}
 
@@ -65,7 +66,7 @@ that by adding `~1`
 to refer to the commit one before `HEAD`.
 
 ~~~
-$ git diff HEAD~1 mars.txt
+$ git diff HEAD~1 b117.txt
 ~~~
 {: .language-bash}
 
@@ -74,20 +75,21 @@ again, but with the notation `HEAD~1`, `HEAD~2`, and so on, to refer to them:
 
 
 ~~~
-$ git diff HEAD~3 mars.txt
+$ git diff HEAD~3 b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,4 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
-+An ill-considered change
+diff --git a/b117.txt b/b117.txt
+index 0a8095d..a8bd3f5 100644
+--- a/b117.txt
++++ b/b117.txt
+@@ -1 +1,5 @@
+ Almost all sequences carry the N501Y mutation.
++But P681H is also very common.
++And of course it contains D614G.
++Note that P.1 also contains N501Y.
++Contains A570D, which is absent from P.1.
 ~~~
 {: .output}
 
@@ -96,24 +98,24 @@ well as the commit message, rather than the _differences_ between a commit and o
 working directory that we see by using `git diff`.
 
 ~~~
-$ git show HEAD~3 mars.txt
+$ git show HEAD~3 b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
+commit 39f2875284ca9c1f4594c63bebaf581480ae3ef6
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+Date:   Sun May 16 07:56:46 2021 +0200
 
-    Start notes on Mars as a base
+    Start notes on B.1.1.7 variant
 
-diff --git a/mars.txt b/mars.txt
+diff --git a/b117.txt b/b117.txt
 new file mode 100644
-index 0000000..df0654a
+index 0000000..0a8095d
 --- /dev/null
-+++ b/mars.txt
++++ b/b117.txt
 @@ -0,0 +1 @@
-+Cold and dry, but everything is my favorite color
++Almost all sequences carry the N501Y mutation.
 ~~~
 {: .output}
 
@@ -133,24 +135,25 @@ and "unique" really does mean unique:
 every change to any set of files on any computer
 has a unique 40-character identifier.
 Our first commit was given the ID
-`f22b25e3233b4645dabd0d81e651fe074bd8e73b`,
+`39f2875284ca9c1f4594c63bebaf581480ae3ef6`,
 so let's try this:
 
 ~~~
-$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
+$ git diff 39f2875284ca9c1f4594c63bebaf581480ae3ef6 b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-diff --git a/mars.txt b/mars.txt
-index df0654a..93a3e13 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,4 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
-+An ill-considered change
+diff --git a/b117.txt b/b117.txt
+index 0a8095d..a8bd3f5 100644
+--- a/b117.txt
++++ b/b117.txt
+@@ -1 +1,5 @@
+ Almost all sequences carry the N501Y mutation.
++But P681H is also very common.
++And of course it contains D614G.
++Note that P.1 also contains N501Y.
++Contains A570D, which is absent from P.1.
 ~~~
 {: .output}
 
@@ -159,20 +162,21 @@ but typing out random 40-character strings is annoying,
 so Git lets us use just the first few characters (typically seven for normal size projects):
 
 ~~~
-$ git diff f22b25e mars.txt
+$ git diff 39f2875 b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-diff --git a/mars.txt b/mars.txt
-index df0654a..93a3e13 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,4 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
-+An ill-considered change
+diff --git a/b117.txt b/b117.txt
+index 0a8095d..a8bd3f5 100644
+--- a/b117.txt
++++ b/b117.txt
+@@ -1 +1,5 @@
+ Almost all sequences carry the N501Y mutation.
++But P681H is also very common.
++And of course it contains D614G.
++Note that P.1 also contains N501Y.
++Contains A570D, which is absent from P.1.
 ~~~
 {: .output}
 
@@ -180,7 +184,7 @@ All right! So
 we can save changes to files and see what we've changed. Now, how
 can we restore older versions of things?
 Let's suppose we change our mind about the last update to
-`mars.txt` (the "ill-considered change").
+`b117.txt` (the "A570D note").
 
 `git status` now tells us that the file has been changed,
 but those changes haven't been staged:
@@ -196,7 +200,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-    modified:   mars.txt
+    modified:   b117.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -206,15 +210,16 @@ We can put things back the way they were
 by using `git checkout`:
 
 ~~~
-$ git checkout HEAD mars.txt
-$ cat mars.txt
+$ git checkout HEAD b117.txt
+$ cat b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+Almost all sequences carry the N501Y mutation.
+But P681H is also very common.
+And of course it contains D614G.
+Note that P.1 also contains N501Y.
 ~~~
 {: .output}
 
@@ -227,12 +232,12 @@ If we want to go back even further,
 we can use a commit identifier instead:
 
 ~~~
-$ git checkout f22b25e mars.txt
+$ git checkout 39f2875 b117.txt
 ~~~
 {: .language-bash}
 
 ~~~
-$ cat mars.txt
+$ cat b117.txt
 ~~~
 {: .language-bash}
 
@@ -251,7 +256,7 @@ On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-    modified:   mars.txt
+    modified:   b117.txt
 
 ~~~
 {: .output}
@@ -261,7 +266,7 @@ Again, we can put things back the way they were
 by using `git checkout`:
 
 ~~~
-$ git checkout HEAD mars.txt
+$ git checkout HEAD b117.txt
 ~~~
 {: .language-bash}
 
@@ -270,21 +275,21 @@ $ git checkout HEAD mars.txt
 > Above we used
 >
 > ~~~
-> $ git checkout f22b25e mars.txt
+> $ git checkout 39f2875 b117.txt
 > ~~~
 > {: .language-bash}
 >
-> to revert `mars.txt` to its state after the commit `f22b25e`. But be careful!
+> to revert `b117.txt` to its state after the commit `39f2875`. But be careful!
 > The command `checkout` has other important functionalities and Git will misunderstand
 > your intentions if you are not accurate with the typing. For example,
-> if you forget `mars.txt` in the previous command.
+> if you forget `b117.txt` in the previous command.
 >
 > ~~~
-> $ git checkout f22b25e
+> $ git checkout 39f2875
 > ~~~
 > {: .language-bash}
 > ~~~
-> Note: checking out 'f22b25e'.
+> Note: checking out '39f2875'.
 >
 > You are in 'detached HEAD' state. You can look around, make experimental
 > changes and commit them, and you can discard any commits you make in this
@@ -295,7 +300,7 @@ $ git checkout HEAD mars.txt
 >
 >  git checkout -b <new-branch-name>
 >
-> HEAD is now at f22b25e Start notes on Mars as a base
+> HEAD is now at 39f2875 Start notes on Mars as a base
 > ~~~
 > {: .error}
 >
@@ -310,7 +315,7 @@ we must use the commit number that identifies the state of the repository
 A common mistake is to use the number of
 the commit in which we made the change we're trying to discard.
 In the example below, we want to retrieve the state from before the most
-recent commit (`HEAD~1`), which is commit `f22b25e`:
+recent commit (`HEAD~1`), which is commit `39f2875`:
 
 ![Git Checkout](../fig/git-checkout.svg)
 
@@ -416,31 +421,31 @@ moving backward and forward in time becomes much easier.
 > What is the output of the last command in
 >
 > ~~~
-> $ cd planets
-> $ echo "Venus is beautiful and full of love" > venus.txt
-> $ git add venus.txt
-> $ echo "Venus is too hot to be suitable as a base" >> venus.txt
-> $ git commit -m "Comment on Venus as an unsuitable base"
-> $ git checkout HEAD venus.txt
-> $ cat venus.txt #this will print the contents of venus.txt to the screen
+> $ cd variants
+> $ echo "Carries the E484K mutation" > p1.txt
+> $ git add p1.txt
+> $ echo "Also carries N501Y." >> p1.txt
+> $ git commit -m "Add note about P1 carrying N501Y"
+> $ git checkout HEAD p1.txt
+> $ cat p1.txt #this will print the contents of p1.txt to the screen
 > ~~~
 > {: .language-bash}
 >
 > 1. ~~~
->    Venus is too hot to be suitable as a base
+>    Also carries N501Y.
 >    ~~~
 >    {: .output}
 > 2. ~~~
->    Venus is beautiful and full of love
+>    Carries the E484K mutation
 >    ~~~
 >    {: .output}
 > 3. ~~~
->    Venus is beautiful and full of love
->    Venus is too hot to be suitable as a base
+>    Carries the E484K mutation
+>    Also carries N501Y.
 >    ~~~
 >    {: .output}
 > 4. ~~~
->    Error because you have changed venus.txt without committing the changes
+>    Error because you have changed p1.txt without committing the changes
 >    ~~~
 >    {: .output}
 >
@@ -448,21 +453,21 @@ moving backward and forward in time becomes much easier.
 > >
 > > The answer is 2.
 > >
-> > The command `git add venus.txt` places the current version of `venus.txt` into the staging area.
+> > The command `git add p1.txt` places the current version of `p1.txt` into the staging area.
 > > The changes to the file from the second `echo` command are only applied to the working copy,
 > > not the version in the staging area.
 > >
-> > So, when `git commit -m "Comment on Venus as an unsuitable base"` is executed,
-> > the version of `venus.txt` committed to the repository is the one from the staging area and
+> > So, when `git commit -m "Add note about P1 carrying N501Y"` is executed,
+> > the version of `p1.txt` committed to the repository is the one from the staging area and
 > > has only one line.
 > >
 > >  At this time, the working copy still has the second line (and
-> >  `git status` will show that the file is modified). However, `git checkout HEAD venus.txt`
-> >  replaces the working copy with the most recently committed version of `venus.txt`.
+> >  `git status` will show that the file is modified). However, `git checkout HEAD p1.txt`
+> >  replaces the working copy with the most recently committed version of `p1.txt`.
 > >
-> >  So, `cat venus.txt` will output
+> >  So, `cat p1.txt` will output
 > >  ~~~
-> >  Venus is beautiful and full of love.
+> >  Carries the E484K mutation
 > > ~~~
 > > {: .output}
 > {: .solution}
@@ -470,10 +475,10 @@ moving backward and forward in time becomes much easier.
 
 > ## Checking Understanding of `git diff`
 >
-> Consider this command: `git diff HEAD~9 mars.txt`. What do you predict this command
+> Consider this command: `git diff HEAD~9 b117.txt`. What do you predict this command
 > will do if you execute it? What happens when you do execute it? Why?
 >
-> Try another command, `git diff [ID] mars.txt`, where [ID] is replaced with
+> Try another command, `git diff [ID] b117.txt`, where [ID] is replaced with
 > the unique identifier for your most recent commit. What do you think will happen,
 > and what does happen?
 {: .challenge}
@@ -482,7 +487,7 @@ moving backward and forward in time becomes much easier.
 >
 > `git checkout` can be used to restore a previous commit when unstaged changes have
 > been made, but will it also work for changes that have been staged but not committed?
-> Make a change to `mars.txt`, add that change, and use `git checkout` to see if
+> Make a change to `b117.txt`, add that change, and use `git checkout` to see if
 > you can remove your change.
 {: .challenge}
 
@@ -492,15 +497,15 @@ moving backward and forward in time becomes much easier.
 > the right commit ID, especially if the commit is from several months ago.
 >
 > Imagine the `planets` project has more than 50 files.
-> You would like to find a commit that modifies some specific text in `mars.txt`.
+> You would like to find a commit that modifies some specific text in `b117.txt`.
 > When you type `git log`, a very long list appeared.
 > How can you narrow down the search?
 >
 > Recall that the `git diff` command allows us to explore one specific file,
-> e.g., `git diff mars.txt`. We can apply a similar idea here.
+> e.g., `git diff b117.txt`. We can apply a similar idea here.
 >
 > ~~~
-> $ git log mars.txt
+> $ git log b117.txt
 > ~~~
 > {: .language-bash}
 >
@@ -512,7 +517,7 @@ moving backward and forward in time becomes much easier.
 > Is it possible to combine both? Let's try the following:
 >
 > ~~~
-> $ git log --patch mars.txt
+> $ git log --patch b117.txt
 > ~~~
 > {: .language-bash}
 >

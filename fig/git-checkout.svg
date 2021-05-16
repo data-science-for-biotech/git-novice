@@ -39,13 +39,13 @@
 			c0,9.268,22.407,16.779,50.047,16.779C194.829,186.381,217.235,178.869,217.235,169.602z"/>
 	</g>
 	<g>
-		<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="204.086,165.774 144.778,165.774 131.603,180.269 
+		<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="204.086,165.774 144.778,165.774 131.603,180.269
 			190.909,180.269 		"/>
 		<line fill="none" stroke="#B285BC" stroke-width="2" x1="145.778" y1="169.704" x2="194.532" y2="169.704"/>
 		<line fill="none" stroke="#B285BC" stroke-width="2" x1="141.778" y1="174.704" x2="190.532" y2="174.704"/>
 	</g>
 	<g>
-		<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="202.775,156 143.468,156 130.292,170.494 
+		<polygon fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" points="202.775,156 143.468,156 130.292,170.494
 			189.599,170.494 		"/>
 		<line fill="none" stroke="#70BF41" stroke-width="2" x1="143.468" y1="161.93" x2="192.222" y2="161.93"/>
 	</g>
@@ -92,7 +92,7 @@
 	<rect x="144.799" y="241.939" fill="none" width="42.712" height="10.2"/>
 	<text transform="matrix(1 0 0 1 149.5942 247.8779)" fill="#231F20" font-family="'Consolas'" font-size="8.6062">892134f</text>
 	<rect x="144.799" y="200.056" fill="none" width="42.712" height="10.2"/>
-	<text transform="matrix(1 0 0 1 149.5942 205.9941)" fill="#231F20" font-family="'Consolas'" font-size="8.6062">f22b25e</text>
+	<text transform="matrix(1 0 0 1 149.5942 205.9941)" fill="#231F20" font-family="'Consolas'" font-size="8.6062">f39f2875</text>
 	<rect x="144.799" y="127.859" fill="none" width="42.712" height="10.2"/>
 	<text transform="matrix(1 0 0 1 149.5942 133.7979)" fill="#231F20" font-family="'Consolas'" font-size="8.6062">3a54f76</text>
 </g>
@@ -103,7 +103,7 @@
 			<polygon fill="#45BEEE" points="398.062,158.571 398.062,218.695 438.614,188.163 			"/>
 		</g>
 		<rect x="265.661" y="175.882" fill="none" width="168.076" height="39.375"/>
-		<text transform="matrix(1 0 0 1 287.0215 184.1621)"><tspan x="0" y="0" font-family="'Consolas'" font-size="12">git checkout HEAD~1</tspan><tspan x="56.08" y="9" font-family="'Consolas'" font-size="12">or </tspan><tspan x="-3.299" y="18" font-family="'Consolas'" font-size="12">git checkout f22b25e</tspan></text>
+		<text transform="matrix(1 0 0 1 287.0215 184.1621)"><tspan x="0" y="0" font-family="'Consolas'" font-size="12">git checkout HEAD~1</tspan><tspan x="56.08" y="9" font-family="'Consolas'" font-size="12">or </tspan><tspan x="-3.299" y="18" font-family="'Consolas'" font-size="12">git checkout f39f2875</tspan></text>
 	</g>
 	<rect x="92" y="286" fill="none" width="147" height="17"/>
 	<text transform="matrix(1 0 0 1 139.1562 294.6279)" font-family="'Helvetica'" font-size="12">repository</text>
