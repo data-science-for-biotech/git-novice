@@ -22,16 +22,16 @@ Systems like Git allow us to move work between any two repositories.  In
 practice, though, it's easiest to use one copy as a central hub, and to keep it
 on the web rather than on someone's laptop.  Most programmers use hosting
 services like [GitHub](https://github.com), [Bitbucket](https://bitbucket.org) or
-[GitLab](https://gitlab.com/) to hold those master copies; we'll explore the pros
+[GitLab](https://gitlab.com/) to hold those main copies; we'll explore the pros
 and cons of this in the final section of this lesson.
 
 Let's start by sharing the changes we've made to our current project with the
 world.  Log in to GitHub, then click on the icon in the top right corner to
-create a new repository called `planets`:
+create a new repository called `variants`:
 
 ![Creating a Repository on GitHub (Step 1)](../fig/github-create-repo-01.png)
 
-Name your repository "planets" and then click "Create Repository".
+Name your repository "variants" and then click "Create Repository".
 
 Note: Since this repository will be connected to a local repository, it needs to be empty. Leave
 "Initialize this repository with a README" unchecked, and keep "None" as options for both "Add
@@ -48,14 +48,14 @@ information on how to configure your local repository:
 This effectively does the following on GitHub's servers:
 
 ~~~
-$ mkdir planets
-$ cd planets
+$ mkdir variants
+$ cd variants
 $ git init
 ~~~
 {: .language-bash}
 
 If you remember back to the earlier [lesson](../04-changes/) where we added and
-committed our earlier work on `mars.txt`, we had a diagram of the local repository
+committed our earlier work on `b117.txt`, we had a diagram of the local repository
 which looked like this:
 
 ![The Local Repository with Git Staging Area](../fig/git-staging-area.svg)
@@ -64,7 +64,7 @@ Now that we have two repositories, we need a diagram like this:
 
 ![Freshly-Made GitHub Repository](../fig/git-freshly-made-github-repo.svg)
 
-Note that our local repository still contains our earlier work on `mars.txt`, but the
+Note that our local repository still contains our earlier work on `b117.txt`, but the
 remote repository on GitHub appears empty as it doesn't contain any files yet.
 
 The next step is to connect the two repositories.  We do this by making the
@@ -89,11 +89,11 @@ Click on the 'HTTPS' link to change the [protocol]({{ page.root }}{% link refere
 
 ![Changing the Repository URL on GitHub](../fig/github-change-repo-string.png)
 
-Copy that URL from the browser, go into the local `planets` repository, and run
+Copy that URL from the browser, go into the local `variants` repository, and run
 this command:
 
 ~~~
-$ git remote add origin https://github.com/vlad/planets.git
+$ git remote add origin https://github.com/vlad/variants.git
 ~~~
 {: .language-bash}
 
@@ -112,8 +112,8 @@ $ git remote -v
 {: .language-bash}
 
 ~~~
-origin   https://github.com/vlad/planets.git (push)
-origin   https://github.com/vlad/planets.git (fetch)
+origin   https://github.com/vlad/variants.git (push)
+origin   https://github.com/vlad/variants.git (fetch)
 ~~~
 {: .output}
 
@@ -124,7 +124,7 @@ Once the remote is set up, this command will push the changes from
 our local repository to the repository on GitHub:
 
 ~~~
-$ git push origin master
+$ git push origin main
 ~~~
 {: .language-bash}
 
@@ -136,8 +136,8 @@ Compressing objects: 100% (11/11), done.
 Writing objects: 100% (16/16), 1.45 KiB | 372.00 KiB/s, done.
 Total 16 (delta 2), reused 0 (delta 0)
 remote: Resolving deltas: 100% (2/2), done.
-To https://github.com/vlad/planets.git
- * [new branch]      master -> master
+To https://github.com/vlad/variants.git
+ * [new branch]      main -> main
 ~~~
 {: .output}
 
@@ -196,19 +196,19 @@ Our local and remote repositories are now in this state:
 > option is synonymous with the `--set-upstream-to` option for the `git branch`
 > command, and is used to associate the current branch with a remote branch so
 > that the `git pull` command can be used without any arguments. To do this,
-> simply use `git push -u origin master` once the remote has been set up.
+> simply use `git push -u origin main` once the remote has been set up.
 {: .callout}
 
 We can pull changes from the remote repository to the local one as well:
 
 ~~~
-$ git pull origin master
+$ git pull origin main
 ~~~
 {: .language-bash}
 
 ~~~
-From https://github.com/vlad/planets
- * branch            master     -> FETCH_HEAD
+From https://github.com/vlad/variants
+ * branch            main     -> FETCH_HEAD
 Already up-to-date.
 ~~~
 {: .output}
@@ -219,7 +219,7 @@ GitHub, though, this command would download them to our local repository.
 
 > ## GitHub GUI
 >
-> Browse to your `planets` repository on GitHub.
+> Browse to your `variants` repository on GitHub.
 > Under the Code tab, find and click on the text that says "XX commits" (where "XX" is some number).
 > Hover over, and click on, the three buttons to the right of each commit.
 > What information can you gather/explore from these buttons?
@@ -292,7 +292,7 @@ GitHub, though, this command would download them to our local repository.
 > > repository to your local repository, Git detects that they have histories that do not share a
 > > common origin and refuses to merge.
 > > ~~~
-> > $ git pull origin master
+> > $ git pull origin main
 > > ~~~
 > > {: .language-bash}
 > >
@@ -302,9 +302,9 @@ GitHub, though, this command would download them to our local repository.
 > > remote: Counting objects: 100% (3/3), done.
 > > remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 > > Unpacking objects: 100% (3/3), done.
-> > From https://github.com/vlad/planets
-> >  * branch            master     -> FETCH_HEAD
-> >  * [new branch]      master     -> origin/master
+> > From https://github.com/vlad/variants
+> >  * branch            main     -> FETCH_HEAD
+> >  * [new branch]      main     -> origin/main
 > > fatal: refusing to merge unrelated histories
 > > ~~~
 > > {: .output}
@@ -313,13 +313,13 @@ GitHub, though, this command would download them to our local repository.
 > > Be careful when you use this option and carefully examine the contents of local and remote
 > > repositories before merging.
 > > ~~~
-> > $ git pull --allow-unrelated-histories origin master
+> > $ git pull --allow-unrelated-histories origin main
 > > ~~~
 > > {: .language-bash}
 > >
 > > ~~~
-> > From https://github.com/vlad/planets
-> >  * branch            master     -> FETCH_HEAD
+> > From https://github.com/vlad/variants
+> >  * branch            main     -> FETCH_HEAD
 > > Merge made by the 'recursive' strategy.
 > > README.md | 1 +
 > > 1 file changed, 1 insertion(+)
