@@ -45,6 +45,21 @@ For these lessons, we will be interacting with [GitHub](https://github.com/) and
 {: .callout}
 
 
+> ## Default branch name
+>
+> Recently, many hosting providers for Git have changed the default branch
+> name from `master` to `main` in the ongoing effort to make computing more inclusive.
+{: .callout}
+>
+> To make things easier for us, we'll also mirror this change in our local config.
+>
+> ~~~
+> $ git config --global init.defaultBranch main
+> ~~~
+> {: .language-bash}
+>
+
+
 > ## Line Endings
 >
 > As with other keys, when you hit <kbd>Return</kbd> on your keyboard,
