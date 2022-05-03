@@ -74,13 +74,11 @@ identify it:
 ![Where to Find Repository URL on GitHub](../fig/github-find-repo-string.png)
 
 
-![Changing the Repository URL on GitHub](../fig/github-change-repo-string.png)
-
 Copy that URL from the browser, go into the local `variants` repository, and run
 this command:
 
 ~~~
-$ git remote add origin https://github.com/vlad/variants.git
+$ git remote add origin git@github.com:vlad/variants.git
 ~~~
 {: .language-bash}
 
@@ -99,8 +97,8 @@ $ git remote -v
 {: .language-bash}
 
 ~~~
-origin   https://github.com/vlad/variants.git (push)
-origin   https://github.com/vlad/variants.git (fetch)
+origin   git@github.com:vlad/variants.git (push)
+origin   git@github.com:vlad/variants.git (fetch)
 ~~~
 {: .output}
 
